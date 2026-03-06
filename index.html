@@ -1,29 +1,28 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AI Book Search</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
 <div class="container">
 
-<h1>📚 AI Book Search</h1>
-<p>Upload a book and ask questions about it.</p>
+  <h1>📚 AI Book Search</h1>
 
-<input type="file" id="fileInput">
+  <p>Upload a book or paste text below, then ask a question or enter keywords.</p>
 
-<textarea id="bookText" placeholder="Or paste book text here..."></textarea>
+  <input type="file" id="fileInput" accept=".txt" />
 
-<input id="query" placeholder="Ask a question about the book">
+  <textarea id="bookText" placeholder="Or paste book text here..." rows="12"></textarea>
 
-<button onclick="searchBook()">Search</button>
+  <input id="queryInput" placeholder="Enter keywords or questions..." />
 
-<h2>Results</h2>
-<div id="results"></div>
+  <button id="searchBtn">Search</button>
+
+  <div id="results"></div>
 
 </div>
 
