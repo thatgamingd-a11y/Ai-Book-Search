@@ -46,7 +46,6 @@ async function askQuestion() {
   const container = document.getElementById("questionResults");
   container.innerHTML = "<p>Searching...</p>";
 
-  // For now: simple keyword fallback
   const paragraphs = book.split("\n").filter(p => p.trim());
   const results = paragraphs.filter(p => p.toLowerCase().includes(question.toLowerCase())).slice(0,5);
 
@@ -54,7 +53,7 @@ async function askQuestion() {
     ? results.map(r => `<div class="result-item">${highlightMatches(r, question)}</div>`).join("")
     : "<p>No relevant information found.</p>";
 
-  // --- Replace above with AI backend call ---
+  // --- AI backend integration example ---
   /*
   const formData = new FormData();
   formData.append("query", question);
