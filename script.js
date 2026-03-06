@@ -1,68 +1,53 @@
-// Load book from uploaded file
-document.getElementById("fileInput").addEventListener("change", (e) => {
+async function uploadBook(file) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch("http://127.0.0.1:8000/upload_book", {
+    method: "POST",
+    body: formData
+  });
+  const data = await response.json();
+  alert(data.message);
+}
+
+document.getElementById("fileInput").addEventListener("change", async (e) => {
   const file = e.target.files[0];
   if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    document.getElementById("bookText").value = reader.result;
-    alert("Book loaded!");
-  };
-  reader.readAsText(file);
+  await uploadBook(file);
 });
 
-// Highlight matches in results
+// Highlight matches (optional)
 function highlightMatches(text, query) {
   const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const regex = new RegExp(escaped, "gi");
   return text.replace(regex, (match) => `<mark>${match}</mark>`);
 }
 
-// Keyword Search
-function keywordSearch() {
-  const book = document.getElementById("bookText").value.trim();
-  const query = document.getElementById("keywordInput").value.trim();
-  if (!book) return alert("Load a book first!");
-  if (!query) return alert("Enter keywords!");
-
-  const paragraphs = book.split("\n").filter(p => p.trim());
-  const results = paragraphs.filter(p => p.toLowerCase().includes(query.toLowerCase())).slice(0,7);
-
-  const container = document.getElementById("keywordResults");
-  container.innerHTML = results.length
-    ? results.map(r => `<div class="result-item">${highlightMatches(r, query)}</div>`).join("")
-    : "<p>No matches found.</p>";
-}
-
-// Question Section (AI-ready)
+// Ask a question — calls backend for semantic search
 async function askQuestion() {
-  const book = document.getElementById("bookText").value.trim();
   const question = document.getElementById("questionInput").value.trim();
-  if (!book) return alert("Load a book first!");
   if (!question) return alert("Enter a question!");
 
-  const container = document.getElementById("questionResults");
-  container.innerHTML = "<p>Searching...</p>";
-
-  const paragraphs = book.split("\n").filter(p => p.trim());
-  const results = paragraphs.filter(p => p.toLowerCase().includes(question.toLowerCase())).slice(0,5);
-
-  container.innerHTML = results.length
-    ? results.map(r => `<div class="result-item">${highlightMatches(r, question)}</div>`).join("")
-    : "<p>No relevant information found.</p>";
-
-  // --- AI integration placeholder ---
-  /*
   const formData = new FormData();
-  formData.append("query", question);
+  formData.append("question", question); // must match backend parameter
+
   const response = await fetch("http://127.0.0.1:8000/query", {
     method: "POST",
     body: formData
   });
   const data = await response.json();
-  container.innerHTML = data.results.map(r => `<div class="result-item">${r}</div>`).join("");
-  */
+
+  const container = document.getElementById("questionResults");
+
+  if (!data.results || data.results.length === 0) {
+    container.innerHTML = "<p>No relevant information found.</p>";
+    return;
+  }
+
+  // display results (optional: highlight question words)
+  container.innerHTML = data.results
+    .map(r => `<div class="result-item">${highlightMatches(r, question)}</div>`)
+    .join("");
 }
 
-// Event listeners
-document.getElementById("keywordBtn").addEventListener("click", keywordSearch);
 document.getElementById("questionBtn").addEventListener("click", askQuestion);
