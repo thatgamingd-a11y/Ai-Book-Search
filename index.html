@@ -7,21 +7,23 @@
 
 <body>
 
+<div class="container">
+
 <h1>📚 AI Book Search</h1>
+<p>Upload a book and ask questions about it.</p>
 
-<p>Paste a book below and search for keywords.</p>
+<input type="file" id="fileInput">
 
-<textarea id="book" placeholder="Paste book text here..." rows="10"></textarea>
+<textarea id="bookText" placeholder="Or paste book text here..."></textarea>
 
-<br><br>
-
-<input id="query" placeholder="Enter keyword">
+<input id="query" placeholder="Ask a question about the book">
 
 <button onclick="searchBook()">Search</button>
 
 <h2>Results</h2>
-
 <div id="results"></div>
+
+</div>
 
 <script src="script.js"></script>
 
