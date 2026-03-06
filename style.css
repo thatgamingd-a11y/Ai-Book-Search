@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f5f7fa;
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
   margin: 0;
   padding: 0;
   display: flex;
@@ -11,19 +11,18 @@ body {
 
 .container {
   background: white;
-  max-width: 720px;
-  width: 90%;
-  margin: 60px 0;
-  padding: 30px 40px;
-  border-radius: 12px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  max-width: 750px;
+  width: 95%;
+  margin: 50px 0;
+  padding: 35px 40px;
+  border-radius: 15px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.15);
 }
 
 h1 {
-  margin-bottom: 8px;
   text-align: center;
-  font-weight: 700;
-  color: #333;
+  margin-bottom: 8px;
+  color: #2c3e50;
 }
 
 p {
@@ -34,62 +33,57 @@ p {
   font-size: 1.1rem;
 }
 
-input[type="file"] {
-  display: block;
-  margin: 0 auto 20px auto;
-}
-
-textarea,
-input#queryInput {
+textarea, input[type="text"], input[type="file"] {
   width: 100%;
-  padding: 12px 16px;
+  padding: 14px 16px;
   margin-bottom: 18px;
-  border: 1.8px solid #ccc;
-  border-radius: 8px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
   font-size: 1rem;
-  resize: vertical;
-  transition: border-color 0.2s ease-in-out;
+  transition: border-color 0.3s;
 }
 
-textarea:focus,
-input#queryInput:focus {
+textarea:focus, input:focus {
   border-color: #4f46e5;
   outline: none;
 }
 
-button#searchBtn {
-  width: 100%;
-  padding: 14px;
+button {
+  padding: 12px 20px;
   background-color: #4f46e5;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-weight: 700;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  transition: background-color 0.3s;
 }
 
-button#searchBtn:hover {
+button:hover {
   background-color: #4338ca;
 }
 
-#results {
+.section {
   margin-top: 30px;
 }
 
+#keywordResults, #questionResults {
+  margin-top: 15px;
+}
+
 .result-item {
-  background: #eef0ff;
-  padding: 14px 20px;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  border-left: 5px solid #4f46e5;
+  background: #f0f4ff;
+  padding: 16px 20px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  border-left: 6px solid #4f46e5;
   font-size: 1rem;
   line-height: 1.4;
 }
 
 mark {
-  background-color: #fbbf24;
+  background-color: #ffeb3b;
   padding: 0 4px;
   border-radius: 3px;
   font-weight: 600;
