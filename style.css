@@ -1,7 +1,7 @@
-/* Fonts and layout */
+/* General Layout */
 body {
   font-family: 'Inter', sans-serif;
-  background: #f0f4f8;
+  background: linear-gradient(135deg, #a8edea, #fed6e3);
   margin: 0;
   padding: 0;
   display: flex;
@@ -13,18 +13,18 @@ body {
 .container {
   max-width: 800px;
   width: 95%;
-  margin: 50px auto;
+  margin: 50px 0;
   background: #ffffff;
   padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.1);
 }
 
 h1 {
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .subtitle {
@@ -34,13 +34,13 @@ h1 {
   margin-bottom: 30px;
 }
 
-/* Inputs & textarea */
+/* Inputs and Textarea */
 textarea, input[type="text"], input[type="file"] {
   width: 100%;
-  padding: 14px 18px;
+  padding: 16px 20px;
   margin-bottom: 18px;
   border: 2px solid #ddd;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 1rem;
   transition: border-color 0.3s;
 }
@@ -58,7 +58,7 @@ button {
   font-size: 1.1rem;
   font-weight: 600;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
@@ -76,31 +76,31 @@ button:hover {
 }
 
 .section {
-  background: #f9fafe;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  background: #f8faff;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
 /* Results */
 .results {
-  margin-top: 15px;
-  max-height: 250px;
+  margin-top: 20px;
+  max-height: 300px;
   overflow-y: auto;
 }
 
 .result-item {
-  background: #eef2ff;
-  padding: 14px 18px;
-  margin-bottom: 12px;
+  background: #eef4ff;
+  padding: 16px 22px;
+  margin-bottom: 14px;
   border-left: 6px solid #4f46e5;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 0.95rem;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 mark {
-  background-color: #ffec99;
+  background-color: #fff176;
   padding: 0 4px;
   border-radius: 3px;
   font-weight: 600;
