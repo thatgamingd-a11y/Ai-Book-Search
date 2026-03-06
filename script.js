@@ -1,20 +1,13 @@
-function searchBook() {
+document.getElementById("fileInput").addEventListener("change", function(e){
 
-let book = document.getElementById("book").value
-let query = document.getElementById("query").value.toLowerCase()
+let file = e.target.files[0]
 
-let paragraphs = book.split("\n")
+let reader = new FileReader()
 
-let results = paragraphs.filter(p => 
-    p.toLowerCase().includes(query)
-)
-
-let resultHTML = ""
-
-results.slice(0,5).forEach(r=>{
-    resultHTML += "<p>" + r + "</p><hr>"
-})
-
-document.getElementById("results").innerHTML = resultHTML
-
+reader.onload = function(event){
+document.getElementById("bookText").value = event.target.result
 }
+
+reader.readAsText(file)
+
+})
