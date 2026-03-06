@@ -1,5 +1,5 @@
 // Load book from uploaded file
-document.getElementById("fileInput").addEventListener("change", async (e) => {
+document.getElementById("fileInput").addEventListener("change", (e) => {
   const file = e.target.files[0];
   if (!file) return;
   const reader = new FileReader();
@@ -36,27 +36,25 @@ function keywordSearch() {
   container.innerHTML = results.map(r => `<div class="result-item">${highlightMatches(r, query)}</div>`).join("");
 }
 
-// Question Section
+// Question Section (AI-ready)
 async function askQuestion() {
   const book = document.getElementById("bookText").value.trim();
   const question = document.getElementById("questionInput").value.trim();
   if (!book) return alert("Load a book first!");
   if (!question) return alert("Enter a question!");
 
-  // For demo, we just do a simple keyword search fallback
-  // Later replace with AI backend
+  const container = document.getElementById("questionResults");
+  container.innerHTML = "<p>Searching...</p>";
+
+  // For now: simple keyword fallback
   const paragraphs = book.split("\n").filter(p => p.trim());
   const results = paragraphs.filter(p => p.toLowerCase().includes(question.toLowerCase())).slice(0,5);
 
-  const container = document.getElementById("questionResults");
-  if (!results.length) {
-    container.innerHTML = "<p>No relevant information found.</p>";
-    return;
-  }
+  container.innerHTML = results.length
+    ? results.map(r => `<div class="result-item">${highlightMatches(r, question)}</div>`).join("")
+    : "<p>No relevant information found.</p>";
 
-  container.innerHTML = results.map(r => `<div class="result-item">${r}</div>`).join("");
-
-  // --- Replace above with AI backend call like this ---
+  // --- Replace above with AI backend call ---
   /*
   const formData = new FormData();
   formData.append("query", question);
@@ -69,6 +67,6 @@ async function askQuestion() {
   */
 }
 
-// Event Listeners
+// Event listeners
 document.getElementById("keywordBtn").addEventListener("click", keywordSearch);
 document.getElementById("questionBtn").addEventListener("click", askQuestion);
