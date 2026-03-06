@@ -10,7 +10,7 @@ document.getElementById("fileInput").addEventListener("change", (e) => {
   reader.readAsText(file);
 });
 
-// Highlight matches
+// Highlight matches in results
 function highlightMatches(text, query) {
   const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const regex = new RegExp(escaped, "gi");
@@ -28,12 +28,9 @@ function keywordSearch() {
   const results = paragraphs.filter(p => p.toLowerCase().includes(query.toLowerCase())).slice(0,7);
 
   const container = document.getElementById("keywordResults");
-  if (!results.length) {
-    container.innerHTML = "<p>No matches found.</p>";
-    return;
-  }
-
-  container.innerHTML = results.map(r => `<div class="result-item">${highlightMatches(r, query)}</div>`).join("");
+  container.innerHTML = results.length
+    ? results.map(r => `<div class="result-item">${highlightMatches(r, query)}</div>`).join("")
+    : "<p>No matches found.</p>";
 }
 
 // Question Section (AI-ready)
@@ -53,7 +50,7 @@ async function askQuestion() {
     ? results.map(r => `<div class="result-item">${highlightMatches(r, question)}</div>`).join("")
     : "<p>No relevant information found.</p>";
 
-  // --- AI backend integration example ---
+  // --- AI integration placeholder ---
   /*
   const formData = new FormData();
   formData.append("query", question);
